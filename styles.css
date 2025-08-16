@@ -161,6 +161,24 @@ hr {
 .rating-set img {
     height: 15px;
 }
+.start-page-placeholder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 180px;
+    font-family: 'inter';
+    color: grey;
+    font-size: 30px;
+}
+
+.no-results{
+    text-align: center;
+    font-size: 40px;
+    font-family: 'inter';
+    color: grey;
+    margin-top: 60px;
+}
 @media (max-width: 768px) {
     header {
         padding-left: 20px;
@@ -255,6 +273,9 @@ hr {
     }
     hr {
         margin: 15px 8px;
+    }
+    .no-results {
+        font-size: 20px;
     }
 }
 

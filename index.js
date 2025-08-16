@@ -18,7 +18,7 @@ function handleClick() {
             
 
             if (!data.Search) {
-            movieContent.innerHTML = "<p>No results found.</p>";
+            movieContent.innerHTML = "<p class='no-results'>No results found.</p>";
             return;
 }
             searchArr.forEach((result) => {
