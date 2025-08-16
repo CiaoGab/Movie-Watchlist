@@ -2,7 +2,7 @@
 
 A responsive web application that allows users to search for movies and add them to their watchlist. Built with vanilla JavaScript, HTML, and CSS, this project utilizes the OMDB API to fetch movie information and provide a clean, user-friendly interface for managing your movie watchlist.
 
-![Movie Watchlist Screenshot](./Assets/premium_photo-1684923604860-64e661f2ff72.avif)
+![Movie Watchlist Screenshot](./Assets/Screenshot%202025-08-15%20212917.png)
 
 ## Features
 
