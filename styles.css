@@ -122,10 +122,12 @@ hr {
 .watchlist {
     display: flex;
     gap: 5px;
+    cursor: pointer;
 }
 
 .watchlist img {
     height: 15px;
+    
 }
 
 .description {

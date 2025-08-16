@@ -1,8 +1,5 @@
 const movieContent = document.getElementById('movie-content')
-
 const searchBtn = document.getElementById('search-btn')
-
-
 
 const favoritesArray = []
 const apiKey = 'fe69f146'
@@ -13,7 +10,7 @@ function handleClick() {
     movieContent.innerHTML = ''
     const inputFieldValue = document.getElementById('search-field').value
     
-    fetch(`${baseURL}s=${inputFieldValue}`)
+    fetch(`${baseURL}s=${inputFieldValue}&type=movie&plot=full`)
         .then(res => res.json())
         .then(data=>{
             
@@ -44,7 +41,7 @@ function handleClick() {
                                 <div class="secondary-text">
                                     <p>${data.Runtime}</p>
                                     <p>${data.Genre}</p>
-                                <div class="watchlist">
+                                <div class="watchlist" id='watchlist'>
                                     <img src="./Assets/add.png" alt="add-image" class="add" />
                                     <p>Watchlist</p>
                                 </div>
