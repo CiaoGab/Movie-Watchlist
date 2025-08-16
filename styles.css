@@ -203,6 +203,10 @@ hr {
     color: grey;
     margin-top: 60px;
 }
+.remove {
+    display: flex;
+    gap: 5px;
+}
 @media (max-width: 768px) {
     header {
         padding-left: 20px;

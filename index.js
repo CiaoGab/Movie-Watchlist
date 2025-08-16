@@ -1,27 +1,26 @@
-// --- Constants & Local Storage Key ---
-const favoritesKey = 'favorites';
-
-// --- DOM Elements (conditionally) ---
+// --- DOM Elements ---
 const movieContent = document.getElementById('movie-content');
 const searchBtn = document.getElementById('search-btn');
 const searchField = document.getElementById('search-field');
-const watchlistContainer = document.getElementById('favorites-movie-content');
+const favoritesKey = 'favorites';
+
+// --- Detect page ---
+const isWatchlistPage = document.getElementById('favorites-movie-content') !== null;
+
+// --- Image paths ---
+const starIcon = isWatchlistPage ? "../Assets/Icon.png" : "Assets/Icon.png";
+const addIcon = isWatchlistPage ? "../Assets/add.png" : "Assets/add.png";
+const removeIcon = isWatchlistPage ? "../Assets/remove.png" : "Assets/remove.png"
 
 // --- API Setup ---
 const apiKey = 'fe69f146';
 const baseURL = `https://www.omdbapi.com/?apikey=${apiKey}&`;
 
-// --- Load favorites from localStorage safely ---
-let favoritesArray = [];
-try {
-    const storedFavorites = JSON.parse(localStorage.getItem(favoritesKey));
-    if (Array.isArray(storedFavorites)) favoritesArray = storedFavorites;
-} catch (err) {
-    console.warn('Could not parse favorites from localStorage', err);
-}
+// --- Load favorites from localStorage ---
+let favoritesArray = JSON.parse(localStorage.getItem(favoritesKey)) || [];
 
-// --- Event Listeners (only if on home page) ---
-if (searchBtn && searchField && movieContent) {
+// --- Event Listeners ---
+if (!isWatchlistPage && searchBtn) {
     searchBtn.addEventListener('click', handleSearch);
 }
 
@@ -35,7 +34,7 @@ async function handleSearch() {
     movieContent.innerHTML = '';
 
     try {
-        const res = await fetch(`${baseURL}s=${encodeURIComponent(query)}&type=movie`);
+        const res = await fetch(`${baseURL}s=${query}&type=movie`);
         const data = await res.json();
 
         if (!data.Search) {
@@ -43,6 +42,7 @@ async function handleSearch() {
             return;
         }
 
+        // Fetch detailed info for each movie
         const movies = await Promise.all(
             data.Search.map(result =>
                 fetch(`${baseURL}i=${result.imdbID}&plot=full`).then(res => res.json())
@@ -56,35 +56,37 @@ async function handleSearch() {
     }
 }
 
-// Render a movie card
+// Render a movie card (for search results or watchlist)
 function renderMovieCard(movieData, container, showWatchlistButton = true) {
-    if (!container || !movieData) return;
-
     const card = document.createElement('div');
     card.classList.add('movie-card-wrapper');
 
     card.innerHTML = `
         <div class="movie-card">
-            <img src="${movieData.Poster !== 'N/A' ? movieData.Poster : 'Assets/movieicon.png'}" class="poster" alt="movie-poster" />
+            <img src="${movieData.Poster}" class="poster" alt="movie-poster" />
             <div class="movie-text-container">
                 <div class="movie-header-text">
                     <h2>${movieData.Title}</h2>
                     <div class='rating-set'>
-                        <img src="/Assets/Icon.png" alt="star-icon" />
+                        <img src="${starIcon}" alt="star-icon" />
                         <p>${movieData.Ratings?.[0]?.Value || "N/A"}</p>
                     </div>
                 </div>
                 <div class="secondary-text">
-                    <p>${movieData.Runtime || 'N/A'}</p>
-                    <p>${movieData.Genre || 'N/A'}</p>
+                    <p>${movieData.Runtime}</p>
+                    <p>${movieData.Genre}</p>
                     ${showWatchlistButton ? `
                     <div class="watchlist">
-                        <img src="Assets/add.png" alt="add-image" class="add" />
+                        <img src="${addIcon}" alt="add-image" class="add" />
                         <p>Watchlist</p>
-                    </div>` : ''}
+                    </div>` : `
+                    <div class="remove">
+                        <img src="${removeIcon}" alt="remove-image" class="remove" />
+                        <p>Remove</p>
+                    </div>`}
                 </div>
                 <div class="description">
-                    <p>${movieData.Plot || 'No description available.'}</p>
+                    <p>${movieData.Plot}</p>
                 </div>
             </div>
         </div>
@@ -92,18 +94,17 @@ function renderMovieCard(movieData, container, showWatchlistButton = true) {
 
     if (showWatchlistButton) {
         const watchlistBtn = card.querySelector('.watchlist');
-        if (watchlistBtn) {
-            watchlistBtn.addEventListener('click', () => addToFavorites(movieData));
-        }
+        watchlistBtn.addEventListener('click', () => addToFavorites(movieData));
+    } else {
+        const removeBtn = card.querySelector('.remove');
+        removeBtn.addEventListener('click', () => removeFromFavorites(movieData.imdbID, card));
     }
 
     container.appendChild(card);
 }
 
-// Add movie to favorites
+// Add movie to favorites and update localStorage
 function addToFavorites(movieData) {
-    if (!movieData) return;
-
     if (!favoritesArray.some(movie => movie.imdbID === movieData.imdbID)) {
         favoritesArray.push(movieData);
         localStorage.setItem(favoritesKey, JSON.stringify(favoritesArray));
@@ -113,27 +114,50 @@ function addToFavorites(movieData) {
     }
 }
 
+// Remove movie from favorites
+function removeFromFavorites(imdbID, cardElement) {
+    favoritesArray = favoritesArray.filter(movie => movie.imdbID !== imdbID);
+    localStorage.setItem(favoritesKey, JSON.stringify(favoritesArray));
+
+    if (cardElement) cardElement.remove();
+    console.log(`Movie removed from watchlist.`);
+
+    updatePlaceholder();
+}
+
 // Render watchlist page
 function renderWatchlist() {
+    if (!isWatchlistPage) return;
+
+    const watchlistContainer = document.getElementById('favorites-movie-content');
     if (!watchlistContainer) return;
 
     watchlistContainer.innerHTML = '';
 
+    favoritesArray.forEach(movie => renderMovieCard(movie, watchlistContainer, false));
+
+    updatePlaceholder();
+}
+
+function updatePlaceholder() {
+    const watchlistContainer = document.getElementById('favorites-movie-content');
+    if (!watchlistContainer) return;
+
+    // If no movies in favorites, show placeholder
     if (favoritesArray.length === 0) {
         watchlistContainer.innerHTML = `
             <div class="watchlist-page-placeholder">
-                <img src="/Assets/movieicon.png" alt="">
+                <img src="../Assets/movieicon.png" alt="placeholder" />
                 <p>Your watchlist is looking a little empty...</p>
-                <a href="/Index.html" class="watchlist-link">
-                    <span><img src="/Assets/add.png" alt=""></span>Let's add some movies!
+                <a href="../Index.html" class="watchlist-link">
+                    <span><img src="../Assets/add.png" alt="add-icon"></span>
+                    Let's add some movies!
                 </a>
-            </div>
-        `;
-        return;
+            </div>`;
     }
-
-    favoritesArray.forEach(movie => renderMovieCard(movie, watchlistContainer, false));
 }
 
-// --- Initialize ---
+
+
+// Initialize watchlist page
 renderWatchlist();
