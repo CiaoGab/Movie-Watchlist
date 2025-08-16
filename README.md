@@ -35,8 +35,16 @@ A responsive web application that allows users to search for movies and add them
 ## Getting Started
 
 1. Clone the repository
-2. Open `index.html` in your browser
-3. Start searching for movies!
+2. **Set up your API key**:
+   - Copy `api-config.example.js` to `api-config.js`
+   - Replace `YOUR_API_KEY_HERE` with your actual OMDB API key
+   - Get a free API key from [OMDB API](http://www.omdbapi.com/apikey.aspx)
+3. Open `index.html` in your browser
+4. Start searching for movies!
+
+## Deployment
+
+This project is configured for GitHub Pages deployment. The main entry point is `index.html` (lowercase) to ensure compatibility with GitHub Pages hosting.
 
 ## Built With
 
@@ -50,17 +58,38 @@ A responsive web application that allows users to search for movies and add them
 ```
 Movie-Watchlist/
 │
-├── index.html
-├── index.js
-├── styles.css
-├── watchlist.html
+├── index.html          # Main application page
+├── index.js            # JavaScript functionality
+├── styles.css          # Main stylesheet
+├── Pages/
+│   └── Watchlist.html  # Watchlist page
 │
 └── Assets/
     ├── add.png
     ├── remove.png
     ├── Icon.png
+    ├── movieicon.png
+    ├── search-icon-2-614x460.png
     └── ... (other assets)
 ```
+
+## Recent Updates & Refactoring
+
+### GitHub Pages Compatibility (Latest)
+- **Fixed 404 errors** by renaming `Index.html` to `index.html` for proper case sensitivity
+- **Refactored asset paths** from absolute (`/Assets/`) to relative (`Assets/`) for proper GitHub Pages deployment
+- **Updated navigation links** between pages to use correct relative paths
+- **Standardized file structure** for better hosting compatibility
+
+### Code Quality Improvements
+- **Cleaner file organization** with dedicated `Pages/` directory for secondary HTML files
+- **Consistent path references** throughout the application
+- **Improved maintainability** with proper relative path structure
+
+### Security Improvements
+- **API key protection** moved from hardcoded values to external configuration files
+- **Environment-based configuration** with `.gitignore` protection for sensitive data
+- **ES6 modules** implementation for better code organization and security
 
 ## Contributing
 

@@ -13,7 +13,8 @@ const addIcon = isWatchlistPage ? "../Assets/add.png" : "Assets/add.png";
 const removeIcon = isWatchlistPage ? "../Assets/remove.png" : "Assets/remove.png"
 
 // --- API Setup ---
-const apiKey = 'fe69f146';
+import config from './api-config.js';
+const apiKey = config.OMDB_API_KEY;
 const baseURL = `https://www.omdbapi.com/?apikey=${apiKey}&`;
 
 // --- Load favorites from localStorage ---
