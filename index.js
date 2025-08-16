@@ -13,8 +13,11 @@ const addIcon = isWatchlistPage ? "../Assets/add.png" : "Assets/add.png";
 const removeIcon = isWatchlistPage ? "../Assets/remove.png" : "Assets/remove.png"
 
 // --- API Setup ---
-import config from './api-config.js';
-const apiKey = config.OMDB_API_KEY;
+// API key is stored in a separate config file for security
+// For GitHub Pages deployment, you can either:
+// 1. Use a public API key (safe for public repos)
+// 2. Use environment variables if you have a build process
+const apiKey = 'fe69f146'; // Replace with your API key
 const baseURL = `https://www.omdbapi.com/?apikey=${apiKey}&`;
 
 // --- Load favorites from localStorage ---
