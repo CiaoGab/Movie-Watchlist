@@ -13,11 +13,13 @@ body {
     align-items: center;
     height: 100vh;
 }
-
 .container {
     width: 100%;
 }
-
+h1 {
+    font-size: 50px;
+    text-shadow: 5px 5px #0a0202;
+}
 main {
     padding: 60px 0px;
 }
@@ -33,6 +35,10 @@ header {
     width: 100%;
     align-items: center;
     font-family: "Inter", sans-serif;
+    background-image: url('/Assets/premium_photo-1684923604860-64e661f2ff72.avif');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .link {
     text-decoration: none;
@@ -155,12 +161,9 @@ hr {
     gap: 5px;
     cursor: pointer;
 }
-
 .watchlist img {
     height: 15px;
-    
 }
-
 .description {
     color: #6B7280;
     line-height: 20px;
@@ -206,6 +209,7 @@ hr {
 .remove {
     display: flex;
     gap: 5px;
+    cursor: pointer;
 }
 @media (max-width: 768px) {
     header {
