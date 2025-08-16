@@ -34,7 +34,7 @@ function handleClick() {
                                 <div class="movie-header-text">
                                     <h2>${data.Title}</h2>
                                 <div class='rating-set'>
-                                    <img src="./Assets/Icon.png" alt="star-icon" />
+                                    <img src="Assets/Icon.png" alt="star-icon" />
                                     <p>${data.Ratings?.[0]?.Value || "N/A"}</p>
                                 </div>
                                 </div>
@@ -42,7 +42,7 @@ function handleClick() {
                                     <p>${data.Runtime}</p>
                                     <p>${data.Genre}</p>
                                 <div class="watchlist" id='watchlist'>
-                                    <img src="./Assets/add.png" alt="add-image" class="add" />
+                                    <img src="Assets/add.png" alt="add-image" class="add" />
                                     <p>Watchlist</p>
                                 </div>
                                 </div>
