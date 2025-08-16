@@ -18,9 +18,13 @@ body {
     width: 100%;
 }
 
+main {
+    padding: 60px 0px;
+}
+
 header {
-    padding-left: 62px;
-    padding-right: 62px;
+    padding-left: 90px;
+    padding-right: 90px;
     padding-top: 80px;
     display: flex;
     flex-direction: column;
@@ -31,35 +35,9 @@ header {
     font-family: "Inter", sans-serif;
 }
 
-@media (max-width: 768px) {
-    header {
-        padding-left: 20px;
-        padding-right: 20px;
-        padding-top: 40px;
-    }
-    .header-text{
-         display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-    .searchbar {
-        width: 100%;
-        max-width: 462px;
-    }
-    .movie-card {
-        flex-direction: column;
-        padding: 15px;
-    }
-    .movie-text-container {
-        margin-left: 0;
-        margin-top: 15px;
-    }
-    .poster {
-        width: 160px; /* Smaller base width for mobile */
-        height: 240px; /* Maintains 4:6 ratio */
-        max-width: 100%;
-    }
-}
+
+
+
 .link {
     text-decoration: none;
     color: white;
@@ -72,6 +50,7 @@ header {
     align-items: center;
     width: 100%;
     margin-bottom: 60px;
+    padding: 60px 100px;
 }
 .searchbar {
     display: flex;
@@ -109,9 +88,7 @@ header {
     background-color: #F9FAFB;
     font-family: "Inter", sans-serif;
 }
-main {
-    padding: 60px;
-}
+
 hr {
     border: 2px solid #E5E7EB;
     margin: 20px 0;
@@ -183,4 +160,141 @@ hr {
 }
 .rating-set img {
     height: 15px;
+}
+@media (max-width: 768px) {
+    header {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 40px;
+    }
+    .header-text{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 30px 50px;
+    }
+    .header-text h1 {
+        font-size: 1.8rem;
+    }
+    .searchbar {
+        width: 100%;
+        max-width: 462px;
+    }
+    .searchbar input {
+        font-size: 0.95rem;
+    }
+    .searchbar button {
+        font-size: 0.95rem;
+    }
+    .movie-card {
+        padding: 15px;
+        max-width: 90%;
+    }
+    .movie-text-container {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+    .movie-header-text h2 {
+        font-size: 1.3rem;
+    }
+    .poster {
+        width: 160px;
+        height: 240px;
+        max-width: 100%;
+    }
+    main {
+        padding: 40px 20px;
+    }
+    .description {
+        font-size: 0.95rem;
+    }
+    .secondary-text {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 20px 12px;
+    }
+    .header-text {
+        padding: 20px 30px;
+    }
+    .header-text h1 {
+        font-size: 1.5rem;
+    }
+    .movie-card {
+        flex-direction: column;
+        padding: 0px;
+        max-width: 100%;
+    }
+    .movie-text-container {
+        width: 100%;
+        gap: 6px;
+    }
+    .description {
+        font-size: 0.85rem;
+        line-height: 1.4;
+        margin-top: 4px;
+    }
+    .secondary-text {
+        font-size: 0.8rem;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    .movie-header-text {
+        gap: 6px;
+    }
+    .movie-header-text h2 {
+        font-size: 1.1rem;
+        line-height: 1.2;
+    }
+    .searchbar input,
+    .searchbar button {
+        font-size: 0.85rem;
+    }
+    hr {
+        margin: 15px 8px;
+    }
+}
+
+@media (max-width: 320px) {
+    header {
+        padding: 15px 8px;
+    }
+    .header-text {
+        padding: 15px 20px;
+    }
+    .header-text h1 {
+        font-size: 1.3rem;
+    }
+    main {
+        padding: 15px 8px;
+    }
+    .movie-card {
+        padding: 8px 4px;
+    }
+    .poster {
+        width: 140px;
+        height: 210px;
+    }
+    .movie-header-text h2 {
+        font-size: 1rem;
+    }
+    .description {
+        font-size: 0.8rem;
+        line-height: 1.3;
+    }
+    .secondary-text {
+        font-size: 0.75rem;
+        gap: 6px;
+    }
+    .searchbar button {
+        padding: 5px 8px;
+        font-size: 0.8rem;
+    }
+    .searchbar input {
+        padding: 5px 6px;
+        font-size: 0.8rem;
+    }
 }
