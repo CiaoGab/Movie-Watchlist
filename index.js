@@ -92,14 +92,17 @@ function renderMovieCard(movieData, container, showWatchlistButton = true) {
         </div>
         <hr />`;
 
-    if (showWatchlistButton) {
-        const watchlistBtn = card.querySelector('.watchlist');
-        watchlistBtn.addEventListener('click', () => addToFavorites(movieData));
-    } else {
-        const removeBtn = card.querySelector('.remove');
-        removeBtn.addEventListener('click', () => removeFromFavorites(movieData.imdbID, card));
-    }
-
+   if (showWatchlistButton) {
+    const watchlistBtn = card.querySelector('.watchlist');
+    const watchlistText = watchlistBtn.querySelector('p'); // get the <p> element
+    watchlistBtn.addEventListener('click', () => {
+        addToFavorites(movieData);
+        watchlistText.textContent = "Added to Watchlist!"; // update text
+    });
+} else {
+    const removeBtn = card.querySelector('.remove');
+    removeBtn.addEventListener('click', () => removeFromFavorites(movieData.imdbID, card));
+}
     container.appendChild(card);
 }
 
