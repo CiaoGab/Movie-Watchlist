@@ -51,7 +51,10 @@ function handleClick() {
                                 </div>
                             </div>
                             </div>
-                            <hr />`
+                            <hr />`;
+                    // document.getElementById('watchlist').addEventListener('click',()=>{
+                    //     localStorage.setItem(result)
+                    // })
                     movieContent.append(resultCard)
                 })
             })

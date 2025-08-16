@@ -75,7 +75,8 @@ header {
 }
 .searchbar {
     display: flex;
-    width: 462px;
+    max-width: 462px;
+    width: 100%;
     background-color: white;
     align-items: center;
     justify-content: space-between;
@@ -119,18 +120,24 @@ hr {
     display: flex;
     gap: 20px;
     align-items: center;
+    width: 100%;
+    max-width: 80%; /* example: choose what looks best */
+    margin: 0 auto;  
 }
 .poster {
     width: 200px; /* Base width */
     height: 300px; /* Height follows 4:6 ratio (1.5x width) */
     object-fit: cover;
     max-width: 100%;
+    
 }
 .movie-text-container {
     display: flex;
     flex-direction: column;
     font-family: "Inter", sans-serif;
     gap: 8px;
+    width: 90%;
+    margin: 0 auto;
 }
 .movie-header-text {
     display: flex;
