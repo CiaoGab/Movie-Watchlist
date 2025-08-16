@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* background-image: url('/Assets/premium_photo-1684923604860-64e661f2ff72.avif'); */
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 100%;
+}
+
+header {
+    padding-left: 62px;
+    padding-right: 62px;
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    color: white;
+    width: 100%;
+    align-items: center;
+    font-family: "Inter", sans-serif;
+}
+.link {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+.header-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 60px;
+}
+.searchbar {
+    display: flex;
+    width: 462px;
+    background-color: white;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: -20px;
+    border: 1px solid #D1D5DB;
+}
+.searchbar-input {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.searchbar img {
+    height: 20px;
+    border: none;
+}
+.searchbar input{
+    border: none;
+    padding: 5px 10px;
+    width: 100%;
+    font-family: "Inter", sans-serif;
+}
+.searchbar button {
+    padding: 7px 20px;
+    height: 100%;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #F9FAFB;
+    font-family: "Inter", sans-serif;
+}
+main {
+    padding: 60px;
+}
+hr {
+    border: 2px solid #E5E7EB;
+    margin: 20px 0;
+}
+.movie-card {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.poster {
+    height: 148px;
+}
+.movie-text-container {
+    display: flex;
+    flex-direction: column;
+    font-family: "Inter", sans-serif;
+    gap: 8px;
+}
+.movie-header-text {
+    display: flex;
+    margin: 0;
+    justify-content: space-between;
+    gap: 10px;
+}
+.movie-header-text h2 {
+    font-size:18px;
+}
+
+.movie-header-text p{
+    font-size: 16px;
+    font-weight: 500;
+}
+.secondary-text {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    width: 100%;
+}
+.watchlist {
+    display: flex;
+    gap: 5px;
+}
+
+.watchlist img {
+    height: 15px;
+}
+
+.description {
+    color: #6B7280;
+    line-height: 20px;
+    font-size: 14px;
+    width: 100%;
+    text-overflow: ellipsis;
+}
+
+.rating-set{
+    display: flex;
+}
+.rating-set img {
+    height: 15px;
+}
