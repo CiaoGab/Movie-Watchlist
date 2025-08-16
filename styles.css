@@ -34,14 +34,28 @@ header {
     align-items: center;
     font-family: "Inter", sans-serif;
 }
-
-
-
-
 .link {
     text-decoration: none;
     color: white;
     cursor: pointer;
+}
+.link:hover {
+    text-decoration: underline;
+}
+.watchlist-link{
+    text-decoration: none;
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+    color: black;
+}
+
+.watchlist-link:hover{
+    text-decoration: underline;
+}
+
+.watchlist-link img {
+    height: 20px;
 }
 
 .header-text {
@@ -54,7 +68,7 @@ header {
 }
 .searchbar {
     display: flex;
-    max-width: 462px;
+    width: 75%;
     width: 100%;
     background-color: white;
     align-items: center;
@@ -171,6 +185,16 @@ hr {
     color: grey;
     font-size: 30px;
 }
+.watchlist-page-placeholder{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 180px;
+    font-family: 'inter';
+    color: grey;
+    font-size: 30px;
+}
 
 .no-results{
     text-align: center;
@@ -196,7 +220,6 @@ hr {
     }
     .searchbar {
         width: 100%;
-        max-width: 462px;
     }
     .searchbar input {
         font-size: 0.95rem;
@@ -276,6 +299,16 @@ hr {
     }
     .no-results {
         font-size: 20px;
+    }
+    .watchlist-page-placeholder{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 180px;
+    font-family: 'inter';
+    color: grey;
+    font-size: 15px;
     }
 }
 
