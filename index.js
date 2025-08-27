@@ -1,36 +1,32 @@
-// --- DOM Elements ---
+import config from './api-config.js';
+
 const movieContent = document.getElementById('movie-content');
 const searchBtn = document.getElementById('search-btn');
 const searchField = document.getElementById('search-field');
 const favoritesKey = 'favorites';
 
-// --- Detect page ---
+
 const isWatchlistPage = document.getElementById('favorites-movie-content') !== null;
 
-// --- Image paths ---
 const starIcon = isWatchlistPage ? "../Assets/Icon.png" : "Assets/Icon.png";
 const addIcon = isWatchlistPage ? "../Assets/add.png" : "Assets/add.png";
 const removeIcon = isWatchlistPage ? "../Assets/remove.png" : "Assets/remove.png"
 
-// --- API Setup ---
-// API key is stored in a separate config file for security
-// For GitHub Pages deployment, you can either:
-// 1. Use a public API key (safe for public repos)
-// 2. Use environment variables if you have a build process
-const apiKey = 'fe69f146'; // Replace with your API key
+
+const apiKey = config.OMDB_API_KEY;
 const baseURL = `https://www.omdbapi.com/?apikey=${apiKey}&`;
 
-// --- Load favorites from localStorage ---
+
 let favoritesArray = JSON.parse(localStorage.getItem(favoritesKey)) || [];
 
-// --- Event Listeners ---
+
 if (!isWatchlistPage && searchBtn) {
     searchBtn.addEventListener('click', handleSearch);
 }
 
 // --- Functions ---
 
-// Fetch movies by search term
+
 async function handleSearch() {
     const query = searchField.value.trim();
     if (!query) return;
@@ -60,7 +56,7 @@ async function handleSearch() {
     }
 }
 
-// Render a movie card (for search results or watchlist)
+
 function renderMovieCard(movieData, container, showWatchlistButton = true) {
     const card = document.createElement('div');
     card.classList.add('movie-card-wrapper');
@@ -98,10 +94,10 @@ function renderMovieCard(movieData, container, showWatchlistButton = true) {
 
    if (showWatchlistButton) {
     const watchlistBtn = card.querySelector('.watchlist');
-    const watchlistText = watchlistBtn.querySelector('p'); // get the <p> element
+    const watchlistText = watchlistBtn.querySelector('p'); 
     watchlistBtn.addEventListener('click', () => {
         addToFavorites(movieData);
-        watchlistText.textContent = "Added to Watchlist!"; // update text
+        watchlistText.textContent = "Added to Watchlist!"; 
     });
 } else {
     const removeBtn = card.querySelector('.remove');
@@ -110,7 +106,7 @@ function renderMovieCard(movieData, container, showWatchlistButton = true) {
     container.appendChild(card);
 }
 
-// Add movie to favorites and update localStorage
+
 function addToFavorites(movieData) {
     if (!favoritesArray.some(movie => movie.imdbID === movieData.imdbID)) {
         favoritesArray.push(movieData);
@@ -121,7 +117,7 @@ function addToFavorites(movieData) {
     }
 }
 
-// Remove movie from favorites
+
 function removeFromFavorites(imdbID, cardElement) {
     favoritesArray = favoritesArray.filter(movie => movie.imdbID !== imdbID);
     localStorage.setItem(favoritesKey, JSON.stringify(favoritesArray));
@@ -132,7 +128,7 @@ function removeFromFavorites(imdbID, cardElement) {
     updatePlaceholder();
 }
 
-// Render watchlist page
+
 function renderWatchlist() {
     if (!isWatchlistPage) return;
 
@@ -150,7 +146,7 @@ function updatePlaceholder() {
     const watchlistContainer = document.getElementById('favorites-movie-content');
     if (!watchlistContainer) return;
 
-    // If no movies in favorites, show placeholder
+
     if (favoritesArray.length === 0) {
         watchlistContainer.innerHTML = `
             <div class="watchlist-page-placeholder">
@@ -166,5 +162,4 @@ function updatePlaceholder() {
 
 
 
-// Initialize watchlist page
 renderWatchlist();

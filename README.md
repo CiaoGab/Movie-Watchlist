@@ -36,9 +36,10 @@ A responsive web application that allows users to search for movies and add them
 
 1. Clone the repository
 2. **Set up your API key**:
-   - Open `index.js` and replace `'fe69f146'` with your actual OMDB API key
+   - Copy `api-config.example.js` to `api-config.js`
+   - Open `api-config.js` and replace `'YOUR_API_KEY_HERE'` with your actual OMDB API key
    - Get a free API key from [OMDB API](http://www.omdbapi.com/apikey.aspx)
-   - **Note**: For public repositories, consider using a public API key or implementing proper environment variable handling
+   - **Note**: The `api-config.js` file is already in `.gitignore` and won't be committed to version control
 3. Open `index.html` in your browser
 4. Start searching for movies!
 
@@ -49,7 +50,8 @@ This project is configured for GitHub Pages deployment. The main entry point is 
 ## Security Notes
 
 ### API Key Security
-- **Public Repositories**: If your repository is public, be aware that your API key will be visible in the code
+- **Secure Setup**: Your API key is now stored in `api-config.js` which is automatically excluded from version control via `.gitignore`
+- **Public Repositories**: Safe to use with public repositories since your API key won't be committed
 - **Private Repositories**: Safe to use with private repositories
 - **Production**: For production applications, consider implementing proper environment variable handling
 - **OMDB API**: The OMDB API used here is free and designed for public use, but monitor your usage
@@ -74,6 +76,8 @@ Movie-Watchlist/
 ├── index.html          # Main application page
 ├── index.js            # JavaScript functionality
 ├── styles.css          # Main stylesheet
+├── api-config.example.js # API configuration template
+├── api-config.js       # Your actual API configuration (not in version control)
 ├── Pages/
 │   └── Watchlist.html  # Watchlist page
 │
